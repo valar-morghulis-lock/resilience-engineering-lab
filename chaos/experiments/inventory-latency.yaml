@@ -1,0 +1,15 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: inventory-latency-experiment
+  namespace: default
+spec:
+  action: delay
+  mode: one
+  selector:
+    labelSelectors:
+      'app': 'inventory-service' # Targeting my inventory-service in the SCM app
+  delay:
+    latency: "5000ms"
+    correlation: "100"
+  duration: "5m"
